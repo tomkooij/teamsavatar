@@ -35,32 +35,32 @@
 
 
             function drawAvatar() {
-            let ctx = mainLayer.scene.context;
-            let afko = document.getElementById("afko").value;
-            let fontsize = document.getElementById("fontsize").value;
-            let bgcolor = document.getElementById("bgcolor").value; 
-            let fgcolor = document.getElementById("fgcolor").value; 
-            console.log("draw!", afko, bgcolor, fgcolor);
-            
-            ctx.beginPath(ctx);
-            ctx.fillStyle = bgcolor;
-            ctx.fillRect(0, 0, WIDTH, HEIGHT);
-            ctx.stroke();
+                let ctx = mainLayer.scene.context;
+                let afko = document.getElementById("afko").value;
+                let fontsize = document.getElementById("fontsize").value;
+                let bgcolor = document.getElementById("bgcolor").value; 
+                let fgcolor = document.getElementById("fgcolor").value; 
+                console.log("draw!", afko, bgcolor, fgcolor);
+                
+                ctx.beginPath(ctx);
+                ctx.fillStyle = bgcolor;
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+                ctx.stroke();
 
-            ctx.font      = `normal ${fontsize}px Arial`;
-            ctx.fillStyle = fgcolor;
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText(afko, WIDTH/2, SIZE/2);
-            viewport.render();
+                ctx.font      = `normal ${fontsize}px Arial`;
+                ctx.fillStyle = fgcolor;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(afko, WIDTH/2, SIZE/2);
+                viewport.render();
             }
 
 
             // draw 
             var viewport = new Concrete.Viewport({
-            container: document.getElementById('concreteContainer'),
-            width: WIDTH,
-            height: HEIGHT,
+                container: document.getElementById('concreteContainer'),
+                width: WIDTH,
+                height: HEIGHT,
             });
             var mainLayer = new Concrete.Layer();
             viewport.add(mainLayer);
@@ -69,28 +69,28 @@
 
             // clickhandlers
             document.getElementById("afko").onchange = function() {
-            drawAvatar();
+                drawAvatar();
             };
 
             document.getElementById("bgcolor").onchange = function() {
-            drawAvatar();
+                drawAvatar();
             };
 
             document.getElementById("fontsize").onchange = function() {
-            drawAvatar();
+                drawAvatar();
             };
 
             document.getElementById("fgcolor").onchange = function() {
-            drawAvatar();
+                drawAvatar();
             };
 
             document.getElementById("go").addEventListener("click", drawAvatar);
 
             document.getElementById("download").addEventListener("click", function() {
-            let afko = document.getElementById("afko").value;
-            viewport.scene.download({
-                fileName: `teams-avatar-${afko}.png`
-            });
+                let afko = document.getElementById("afko").value;
+                viewport.scene.download({
+                    fileName: `teams-avatar-${afko}.png`
+                });
             });
         </script>
         
