@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Teams Avatar Maker</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/concretejs/3.0.5/concrete.min.js"></script>
+    </head>
+    <body>
+        <div id="controls">
+            <label>Kleur:</label>
+            <input type="color" id="fgcolor" name="fgcolor" value="#000000">
+            <input type="color" id="bgcolor" name="bgcolor" value="#6264A7">
+            <label>Afkorting:</label>
+            <input type="text" id="afko" name="afko" value="KJ" size=3> 
+            <label>Font size:</label>
+            <input type="text" id="fontsize" name="fontsize" value="230" size=2>px
+            <p>
+            <input id="go" type="button" value="Maak avatar!">
+           
+            <button id="download">Download</button>
+        </div>
+        <p>
+        <div id="concreteContainer"></div>
+        
+        <script type="text/javascript">
+            let SIZE = 500;
+            let WIDTH = SIZE;
+            let HEIGHT = SIZE;
+
+
+            function drawAvatar() {
+            let ctx = mainLayer.scene.context;
+            let afko = document.getElementById("afko").value;
+            let fontsize = document.getElementById("fontsize").value;
+            let bgcolor = document.getElementById("bgcolor").value; 
+            let fgcolor = document.getElementById("fgcolor").value; 
+            console.log("draw!", afko, bgcolor, fgcolor);
+            
+            ctx.beginPath(ctx);
+            ctx.fillStyle = bgcolor;
+            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+            ctx.stroke();
+
+            ctx.font      = `normal ${fontsize}px Arial`;
+            ctx.fillStyle = fgcolor;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(afko, WIDTH/2, SIZE/2);
+            viewport.render();
+            }
+
+
+            // draw 
+            var viewport = new Concrete.Viewport({
+            container: document.getElementById('concreteContainer'),
+            width: WIDTH,
+            height: HEIGHT,
+            });
+            var mainLayer = new Concrete.Layer();
+            viewport.add(mainLayer);
+            drawAvatar();
+
+
+            // clickhandlers
+            document.getElementById("afko").onchange = function() {
+            drawAvatar();
+            };
+
+            document.getElementById("bgcolor").onchange = function() {
+            drawAvatar();
+            };
+
+            document.getElementById("fontsize").onchange = function() {
+            drawAvatar();
+            };
+
+            document.getElementById("fgcolor").onchange = function() {
+            drawAvatar();
+            };
+
+            document.getElementById("go").addEventListener("click", drawAvatar);
+
+            document.getElementById("download").addEventListener("click", function() {
+            let afko = document.getElementById("afko").value;
+            viewport.scene.download({
+                fileName: `teams-avatar-${afko}.png`
+            });
+            });
+        </script>
+        
+    </body>
+</html>
+ 
