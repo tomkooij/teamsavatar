@@ -88,8 +88,11 @@
 
             document.getElementById("download").addEventListener("click", function() {
                 let afko = document.getElementById("afko").value;
+                // https://stackoverflow.com/a/56399551/4965175
+                const c = '0123459789abcdef'
+                let randomstr = [...Array(3)].map(_ => c[~~(Math.random()*c.length)]).join('')
                 viewport.scene.download({
-                    fileName: `teams-avatar-${afko}.png`
+                    fileName: `teams-avatar-${afko}-${randomstr}.png`
                 });
             });
         </script>
