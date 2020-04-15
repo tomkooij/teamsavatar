@@ -42,6 +42,7 @@
                 let fgcolor = document.getElementById("fgcolor").value; 
                 console.log("draw!", afko, bgcolor, fgcolor);
                 
+                mainLayer.scene.clear();
                 ctx.beginPath(ctx);
                 ctx.fillStyle = bgcolor;
                 ctx.fillRect(0, 0, WIDTH, HEIGHT);
